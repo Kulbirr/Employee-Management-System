@@ -2,8 +2,8 @@ package com.example.AulaCube.Service;
 
 import com.example.AulaCube.DTOS.EmployeeDetails;
 import com.example.AulaCube.Entities.Employee;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeAlreadyPresent;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeNotFoundException;
+import com.example.AulaCube.Exceptionss.EmployeeExceptions.EmployeeAlreadyPresent;
+import com.example.AulaCube.Exceptionss.EmployeeExceptions.EmployeeNotFoundException;
 import com.example.AulaCube.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,6 +63,7 @@ public class EmployeeService {
         employeeToBeUpdated.setEmail(updatedEmployee.getEmail());
         employeeToBeUpdated.setDepartmentId(updatedEmployee.getDepartmentId());
         employeeToBeUpdated.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        employeeRepository.save(employeeToBeUpdated);
 
         return employeeToBeUpdated;
     }

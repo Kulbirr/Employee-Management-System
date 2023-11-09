@@ -2,8 +2,8 @@ package com.example.AulaCube.Service;
 
 import com.example.AulaCube.DTOS.DepartmentDetails;
 import com.example.AulaCube.Entities.Department;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.DepartmentExceptions.DepartmentAlreadyExistsException;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.DepartmentExceptions.DepartmentDoseNotExistException;
+import com.example.AulaCube.Exceptionss.DepartmentExceptions.DepartmentAlreadyExistsException;
+import com.example.AulaCube.Exceptionss.DepartmentExceptions.DepartmentDoseNotExistException;
 import com.example.AulaCube.Repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +46,33 @@ public class DepartmentService {
     }
 
 
+    public Department updateDepartment(Department updatedDepartment, String departmentId) throws DepartmentDoseNotExistException{
+        Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
 
+        if(!departmentOptional.isPresent()){
+            throw new DepartmentDoseNotExistException("No department exists with given departmentId : "+ departmentId);
+        }
+
+        Department departmentToBeUpdated = departmentOptional.get();
+
+//        updating the department
+        departmentToBeUpdated.setDepartmentName(updatedDepartment.getDepartmentName());
+        departmentToBeUpdated.setUpdatedAT(new Timestamp(System.currentTimeMillis()));
+
+        departmentRepository.save(departmentToBeUpdated);
+
+        return departmentToBeUpdated;
+    }
+
+    public String deleteDepartment(String departmentId) throws DepartmentDoseNotExistException{
+        Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
+
+        if(!departmentOptional.isPresent()){
+            throw new DepartmentDoseNotExistException("No department exists with given departmentId : "+ departmentId);
+        }
+
+        Department department = departmentOptional.get();
+        departmentRepository.delete(department);
+        return "Department with departmentId : " + departmentId + " Successfully deleted";
+    }
 }

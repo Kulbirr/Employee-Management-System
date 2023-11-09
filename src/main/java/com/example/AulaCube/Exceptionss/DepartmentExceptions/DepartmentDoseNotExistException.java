@@ -1,4 +1,4 @@
-package com.example.AulaCube.Exceptions.EmployeeExceptions.DepartmentExceptions;
+package com.example.AulaCube.Exceptionss.DepartmentExceptions;
 
 public class DepartmentDoseNotExistException extends Exception{
 

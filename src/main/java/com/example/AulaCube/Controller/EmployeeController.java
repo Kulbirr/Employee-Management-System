@@ -2,8 +2,8 @@ package com.example.AulaCube.Controller;
 
 import com.example.AulaCube.DTOS.EmployeeDetails;
 import com.example.AulaCube.Entities.Employee;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeAlreadyPresent;
-import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeNotFoundException;
+import com.example.AulaCube.Exceptionss.EmployeeExceptions.EmployeeAlreadyPresent;
+import com.example.AulaCube.Exceptionss.EmployeeExceptions.EmployeeNotFoundException;
 import com.example.AulaCube.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

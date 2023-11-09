@@ -1,4 +1,4 @@
-package com.example.AulaCube.Exceptions.EmployeeExceptions.DepartmentExceptions;
+package com.example.AulaCube.Exceptionss.DepartmentExceptions;
 
 public class DepartmentAlreadyExistsException extends Exception{
     public DepartmentAlreadyExistsException(String message) {
