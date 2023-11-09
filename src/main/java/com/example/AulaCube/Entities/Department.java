@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Document(collection = "departments")
 @Getter
@@ -19,7 +20,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String departmentName;

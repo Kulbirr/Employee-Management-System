@@ -2,8 +2,8 @@ package com.example.AulaCube.Service;
 
 import com.example.AulaCube.DTOS.EmployeeDetails;
 import com.example.AulaCube.Entities.Employee;
-import com.example.AulaCube.Exceptions.EmployeeAlreadyPresent;
-import com.example.AulaCube.Exceptions.EmployeeNotFoundException;
+import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeAlreadyPresent;
+import com.example.AulaCube.Exceptions.EmployeeExceptions.EmployeeNotFoundException;
 import com.example.AulaCube.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class EmployeeService {
     EmployeeRepository employeeRepository;
 
     public String addEmployee(Employee employee) throws EmployeeAlreadyPresent{
-        Optional<Employee> employeeOptional = employeeRepository.findById(employee.getId());
+        boolean employeeOptional = employeeRepository.existsById(employee.getId());
 
-        if(employeeOptional.isPresent()){
+        if(employeeOptional){
             throw new EmployeeAlreadyPresent("Employee Already exists.");
         }
         employee.setCreatedAt(new Timestamp(System.currentTimeMillis()));
@@ -58,7 +58,6 @@ public class EmployeeService {
         Employee employeeToBeUpdated = employeeOptional.get();
 
         //Updating the employee
-        employeeToBeUpdated.setId(updatedEmployee.getId());
         employeeToBeUpdated.setFirstName(updatedEmployee.getFirstName());
         employeeToBeUpdated.setLastName(updatedEmployee.getLastName());
         employeeToBeUpdated.setEmail(updatedEmployee.getEmail());
